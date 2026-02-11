@@ -256,9 +256,11 @@ For questions or support, please open an issue on GitHub.
 
 ---
 
-<img width="1919" height="907" alt="Screenshot 2026-02-11 084750" src="https://github.com/user-attachments/assets/7f0689f3-6288-4c24-9ddc-b7444660dc3c" /><img width="1919" height="906" alt="Screenshot 2026-02-11 084640" src="https://github.com/user-attachments/assets/290dfb57-125d-45ca-bd7e-61d1cef66836" />
+
 <img width="1919" height="911" alt="Screenshot 2026-02-11 084824" src="https://github.com/user-attachments/assets/65d829f5-7cdc-496f-90ec-5507e544a535" />
 <img width="1919" height="910" alt="Screenshot 2026-02-11 085239" src="https://github.com/user-attachments/assets/3046552b-6892-4f7d-a7d0-89cf82f3236d" />
+<img width="1919" height="907" alt="Screenshot 2026-02-11 084750" src="https://github.com/user-attachments/assets/df957425-cdbb-4155-922f-bae74ff7b164" />
+<img width="1919" height="910" alt="Screenshot 2026-02-11 085239" src="https://github.com/user-attachments/assets/259dcc24-a6ed-4853-9651-26035403fe66" />
 <img width="1919" height="906" alt="Screenshot 2026-02-11 084928" src="https://github.com/user-attachments/assets/d239d248-13cb-4205-975c-8af06e57245a" />
 <img width="1919" height="911" alt="Screenshot 2026-02-11 084913" src="https://github.com/user-attachments/assets/7b81ea41-a174-4c5a-bb34-e66b4f385090" />
 
