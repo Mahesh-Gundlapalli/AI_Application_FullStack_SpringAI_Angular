@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-sidebar: #f8fafc;
+  --bg-sidebar-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-sidebar: #0f172a;
+  --text-sidebar-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --border-sidebar: #e2e8f0;
+  --hover-bg: #f1f5f9;
+  --hover-sidebar: #e2e8f0;
+  --gradient-from: #3b82f6;
+  --gradient-to: #a855f7;
+  --shadow-color: rgba(59, 130, 246, 0.5);
+  --placeholder-color: #94a3b8;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-sidebar: #020617;
+  --bg-sidebar-secondary: #0f172a;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-sidebar: #ffffff;
+  --text-sidebar-secondary: #94a3b8;
+  --border-color: #334155;
+  --border-sidebar: #1e293b;
+  --hover-bg: #1e293b;
+  --hover-sidebar: #1e293b;
+  --gradient-from: #3b82f6;
+  --gradient-to: #a855f7;
+  --shadow-color: rgba(59, 130, 246, 0.5);
+  --placeholder-color: #64748b;
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: var(--placeholder-color);
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: var(--placeholder-color);
+}
+
+::-ms-input-placeholder {
+  color: var(--placeholder-color);
+}

@@ -1,0 +1,102 @@
+<!-- <div class="flex flex-col h-screen text-sidebar"
+  style="background: linear-gradient(to bottom, var(--bg-sidebar), var(--bg-sidebar-secondary));">
+  Header/Logo Section
+  <div class="p-6" style="border-bottom: 1px solid var(--border-sidebar);">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          AI Assistant
+        </h1>
+        <p class="text-xs mt-1" style="color: var(--text-sidebar-secondary);">Your intelligent companion</p>
+      </div>
+      Theme Toggle (Top Right)
+      <button (click)="handleAction('theme')"
+        class="flex items-center justify-center p-2 rounded-lg transition-all duration-300 cursor-pointer group"
+        [style.background]="'transparent'" [style.color]="'var(--text-sidebar)'"
+        (mouseenter)="onButtonHover($event, 'theme', true)" (mouseleave)="onButtonHover($event, 'theme', false)"
+        title="{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}">
+        <svg class="w-5 h-5 transition-colors group-hover:text-white" [style.color]="'var(--text-sidebar-secondary)'"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path *ngIf="isDarkMode" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+          </path>
+          <path *ngIf="!isDarkMode" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+      </button>
+    </div>
+  </div> -->
+
+<div class="flex flex-col h-screen text-sidebar"
+  style="background: linear-gradient(to bottom, var(--bg-sidebar), var(--bg-sidebar-secondary));">
+  <!-- Header/Logo Section -->
+  <div class="p-6 flex items-center justify-between" style="border-bottom: 1px solid var(--border-sidebar);">
+    <div>
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+        AI Assistant
+      </h1>
+      <p class="text-xs mt-1" style="color: var(--text-sidebar-secondary);">Your intelligent companion</p>
+    </div>
+    <!-- Theme Toggle Switch -->
+    <label class="relative inline-flex items-center cursor-pointer">
+      <input type="checkbox" [checked]="isDarkMode" (change)="handleAction('theme')" class="sr-only peer">
+      <div
+        class="w-11 h-6 sm:w-12 sm:h-7 bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer transition-all duration-300 peer-checked:bg-gradient-to-r peer-checked:from-blue-600 peer-checked:to-purple-600">
+        <div
+          class="absolute top-[2px] left-[2px] bg-white rounded-full h-5 w-5 sm:h-6 sm:w-6 transition-all duration-300 flex items-center justify-center shadow-md peer-checked:translate-x-5 sm:peer-checked:translate-x-5"
+          [class.translate-x-5]="isDarkMode" [class.sm:translate-x-5]="isDarkMode">
+          <svg *ngIf="!isDarkMode" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-500 transition-all duration-300"
+            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+            </path>
+          </svg>
+          <svg *ngIf="isDarkMode" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 transition-all duration-300"
+            fill="currentColor" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </div>
+      </div>
+    </label>
+  </div>
+
+  <!-- Main Navigation -->
+  <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+    <a *ngFor="let item of menuItems" [routerLink]="item.route"
+      routerLinkActive="bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/50"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 hover:translate-x-1 cursor-pointer group"
+      [style.background]="'transparent'" [style.color]="'var(--text-sidebar)'" (mouseenter)="onMenuHover($event, true)"
+      (mouseleave)="onMenuHover($event, false)">
+      <svg class="w-5 h-5 transition-colors group-hover:text-white" [style.color]="'var(--text-sidebar-secondary)'"
+        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon" />
+      </svg>
+      <span class="font-medium">{{ item.label }}</span>
+    </a>
+  </nav>
+
+  <!-- Bottom Actions -->
+  <div class="p-3 space-y-1" style="border-top: 1px solid var(--border-sidebar);">
+    <button *ngFor="let item of bottomMenuItems" (click)="handleAction(item.action)" [ngClass]="{
+        'w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 cursor-pointer group': true
+      }" [class.text-red-400]="item.action === 'signout'" [style.background]="'transparent'"
+      [style.color]="item.action === 'signout' ? '' : 'var(--text-sidebar)'"
+      (mouseenter)="onButtonHover($event, item.action, true)" (mouseleave)="onButtonHover($event, item.action, false)">
+      <svg [ngClass]="{
+          'w-5 h-5 transition-colors': true,
+          'group-hover:text-white': item.action !== 'signout',
+          'text-red-400': item.action === 'signout'
+        }" [style.color]="item.action !== 'signout' ? 'var(--text-sidebar-secondary)' : ''" fill="none"
+        stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon"></path>
+      </svg>
+      <span class="font-medium">{{ item.label }}</span>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <div class="p-4 text-center" style="border-top: 1px solid var(--border-sidebar);">
+    <p class="text-sm font-medium mb-1" style="color: var(--text-sidebar);">👤 {{ userName }}</p>
+    <p class="text-xs" style="color: var(--text-sidebar-secondary);">© 2026 AI Assistant</p>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="flex flex-col h-screen"
+  style="background: linear-gradient(to bottom right, var(--bg-secondary), var(--bg-primary));">
+  <!-- Header -->
+  <div class="px-6 py-4 shadow-sm" style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color);">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold flex items-center gap-2" style="color: var(--text-primary);">
+          🎨 AI Image Generator
+        </h1>
+        <p class="text-sm mt-1" style="color: var(--text-secondary);">Describe your vision, and watch it come to life
+        </p>
+      </div>
+      <button (click)="clearChat()" class="px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200"
+        style="background: var(--hover-bg); color: var(--text-primary);">
+        Clear Chat
+      </button>
+    </div>
+  </div>
+
+  <!-- Messages Container -->
+  <div #messagesContainer class="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+    <div *ngFor="let message of messages" class="flex" [class.justify-end]="message.role === 'user'"
+      [class.justify-start]="message.role === 'assistant'">
+
+      <!-- Assistant Message -->
+      <div *ngIf="message.role === 'assistant'" class="flex gap-3 max-w-3xl">
+        <div
+          class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-lg shadow-md">
+          🎨
+        </div>
+        <div class="flex-1">
+          <div *ngIf="!message.isTyping" class="rounded-2xl rounded-tl-none px-5 py-3 shadow-md"
+            style="background: var(--bg-primary); border: 1px solid var(--border-color);">
+            <p class="whitespace-pre-wrap leading-relaxed" style="color: var(--text-primary);">{{ message.content }}</p>
+
+            <!-- Display Generated Images -->
+            <div *ngIf="message.imageUrls && message.imageUrls.length > 0" class="mt-4 grid gap-3"
+              [class.grid-cols-1]="message.imageUrls.length === 1" [class.grid-cols-2]="message.imageUrls.length > 1">
+              <div *ngFor="let imageUrl of message.imageUrls" class="relative group">
+                <img [src]="imageUrl" alt="Generated image"
+                  class="w-full h-auto rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" />
+                <a [href]="imageUrl" target="_blank"
+                  class="absolute top-2 right-2 bg-white/80 hover:bg-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <span class="text-xs mt-2 block" style="color: var(--text-secondary);">{{ message.timestamp | date:'short'
+              }}</span>
+          </div>
+          <div *ngIf="message.isTyping" class="rounded-2xl rounded-tl-none px-5 py-3 shadow-md"
+            style="background: var(--bg-primary); border: 1px solid var(--border-color);">
+            <div class="flex gap-1">
+              <span class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+              <span class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+              <span class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Message -->
+      <div *ngIf="message.role === 'user'" class="flex gap-3 max-w-3xl">
+        <div class="flex-1">
+          <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl rounded-tr-none px-5 py-3 shadow-md">
+            <p class="text-white whitespace-pre-wrap leading-relaxed">{{ message.content }}</p>
+            <span class="text-xs text-purple-100 mt-2 block">{{ message.timestamp | date:'short' }}</span>
+          </div>
+        </div>
+        <div
+          class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold shadow-md">
+          {{ userInitial }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="px-4 py-4 shadow-lg" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex gap-3 items-center">
+        <select [(ngModel)]="numberOfImages" [disabled]="isLoading"
+          class="px-3 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+          style="height: 52px; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
+          <option [value]="1">1 image</option>
+          <option [value]="2">2 images</option>
+          <option [value]="3">3 images</option>
+          <option [value]="4">4 images</option>
+        </select>
+        <div class="flex-1 relative">
+          <textarea [(ngModel)]="userInput" (keydown)="onKeyDown($event)" [disabled]="isLoading"
+            placeholder="Describe the image you want to create... (e.g., 'A serene sunset over mountains') Press Enter to send"
+            rows="1"
+            class="w-full px-4 py-3 pr-12 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            style="min-height: 52px; max-height: 200px; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);"></textarea>
+          <div class="absolute bottom-3 right-3 text-xs" style="color: var(--text-secondary);">
+            {{ userInput.length }}
+          </div>
+        </div>
+        <button (click)="sendMessage()" [disabled]="!userInput.trim() || isLoading"
+          class="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 disabled:transform-none flex items-center gap-2"
+          style="height: 52px;">
+          <svg *ngIf="!isLoading" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8">
+            </path>
+          </svg>
+          <svg *ngIf="isLoading" class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+            </path>
+          </svg>
+          <span>{{ isLoading ? 'Creating...' : 'Generate' }}</span>
+        </button>
+      </div>
+      <p class="text-xs mt-2 text-center" style="color: var(--text-secondary);">✨ Be detailed in your description for
+        amazing results</p>
+    </div>
+  </div>
+</div>

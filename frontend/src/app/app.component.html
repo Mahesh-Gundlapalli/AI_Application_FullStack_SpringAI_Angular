@@ -1,0 +1,16 @@
+<div class="flex h-screen overflow-hidden">
+
+  <div class="w-64 flex-shrink-0">
+    <app-sidemenu [isDarkMode]="isDarkMode" (themeToggle)="toggleTheme()" (settingsClick)="openConfigDialog()"
+      (signOut)="onSignOut()">
+    </app-sidemenu>
+  </div>
+
+  <div class="flex-1 overflow-hidden">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+
+<app-config-dialog [show]="showConfigDialog" (close)="onConfigDialogClose()">
+</app-config-dialog>

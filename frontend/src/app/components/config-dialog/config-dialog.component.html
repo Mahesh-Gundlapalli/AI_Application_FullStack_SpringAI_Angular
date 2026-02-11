@@ -1,0 +1,40 @@
+<div class="modal-overlay" *ngIf="show" (click)="onCancel()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>🔑 Configuration</h2>
+      <p class="subtitle">Enter your OpenAI API key to get started</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="config-form">
+      <div class="form-group">
+        <label for="userName">Your Name</label>
+        <input type="text" id="userName" [(ngModel)]="userName" name="userName" placeholder="Enter your name"
+          class="form-input" required />
+      </div>
+
+      <div class="form-group">
+        <label for="apiKey">OpenAI API Key</label>
+        <input type="password" id="apiKey" [(ngModel)]="apiKey" name="apiKey" placeholder="sk-..." class="form-input"
+          required />
+        <small class="help-text">
+          Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a>
+        </small>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+          Save Configuration
+        </button>
+      </div>
+    </form>
+
+    <div class="security-note">
+      <small>🔒 Your API key is stored securely in your browser's session storage and is never sent to our
+        servers.</small>
+    </div>
+  </div>
+</div>
