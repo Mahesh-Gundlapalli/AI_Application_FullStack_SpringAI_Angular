@@ -164,9 +164,14 @@ public class ChatService {
     }
 
     //load prompt from classpath
+    // public String loadPromptTemplate(String fileName) throws IOException {
+    //     Path filePath = new ClassPathResource(fileName).getFile().toPath();
+    //     return Files.readString(filePath);
+    // }
     public String loadPromptTemplate(String fileName) throws IOException {
-        Path filePath = new ClassPathResource(fileName).getFile().toPath();
-        return Files.readString(filePath);
+        ClassPathResource resource = new ClassPathResource(fileName);
+        return new String(resource.getInputStream().readAllBytes(), 
+            java.nio.charset.StandardCharsets.UTF_8);
     }
 
     //Put inputText in prompt
