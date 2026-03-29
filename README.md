@@ -1,7 +1,5 @@
 # AI-Powered Full-Stack Application
 
-**Website URL** : https://host-frontend-ai.vercel.app
-
 A modern full-stack web application that leverages OpenAI's powerful APIs to provide intelligent chat conversations, cricket-specific Q&A, and AI-powered image generation. Built with Spring Boot and Angular, this application features a beautiful UI with conversation memory and secure API key management.
 
 ## ✨ Features
