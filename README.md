@@ -13,6 +13,13 @@ A modern full-stack web application that leverages OpenAI's powerful APIs to pro
 - **🔄 Sign Out & Clear**: Complete session cleanup with config and chat history removal
 - **🎯 Beautiful UI**: Modern, responsive design with gradient backgrounds and smooth animations
 
+<img width="1919" height="906" alt="Screenshot 2026-02-11 084640" src="https://github.com/user-attachments/assets/11aa09c4-eeb5-491a-b07a-3984449a9622" />
+<img width="1919" height="911" alt="Screenshot 2026-02-11 084824" src="https://github.com/user-attachments/assets/859458c3-796f-432b-be8d-62004e042b95" />
+<img width="1919" height="907" alt="Screenshot 2026-02-11 084750" src="https://github.com/user-attachments/assets/3b3bfa6f-fe68-4224-b97e-0e3e476d1d63" />
+<img width="1919" height="910" alt="Screenshot 2026-02-11 085239" src="https://github.com/user-attachments/assets/82c5323b-0966-4475-9682-2a5676df385e" />
+<img width="1919" height="911" alt="Screenshot 2026-02-11 084913" src="https://github.com/user-attachments/assets/4fb96b19-2f7e-4fb2-9524-4b1387541465" />
+<img width="1919" height="906" alt="Screenshot 2026-02-11 084928" src="https://github.com/user-attachments/assets/714ec8dd-e726-41b2-9187-b90849e3e5eb" />
+
 ## 🛠️ Tech Stack
 
 ### Backend
@@ -255,13 +262,6 @@ Contributions are welcome! Please follow these steps:
 For questions or support, please open an issue on GitHub.
 
 ---
-
-<img width="1919" height="906" alt="Screenshot 2026-02-11 084640" src="https://github.com/user-attachments/assets/11aa09c4-eeb5-491a-b07a-3984449a9622" />
-<img width="1919" height="911" alt="Screenshot 2026-02-11 084824" src="https://github.com/user-attachments/assets/859458c3-796f-432b-be8d-62004e042b95" />
-<img width="1919" height="907" alt="Screenshot 2026-02-11 084750" src="https://github.com/user-attachments/assets/3b3bfa6f-fe68-4224-b97e-0e3e476d1d63" />
-<img width="1919" height="910" alt="Screenshot 2026-02-11 085239" src="https://github.com/user-attachments/assets/82c5323b-0966-4475-9682-2a5676df385e" />
-<img width="1919" height="911" alt="Screenshot 2026-02-11 084913" src="https://github.com/user-attachments/assets/4fb96b19-2f7e-4fb2-9524-4b1387541465" />
-<img width="1919" height="906" alt="Screenshot 2026-02-11 084928" src="https://github.com/user-attachments/assets/714ec8dd-e726-41b2-9187-b90849e3e5eb" />
 
 
 
